@@ -1,3 +1,17 @@
+wb-io (1.2.2) stable; urgency=medium
+
+  * adds support for long spidev filenames
+
+ -- Evgeny Boger <boger@contactless.ru>  Wed, 11 Nov 2015 21:42:00 +0300
+
+
+wb-io (1.2) stable; urgency=medium
+
+  * explicitly set tx_nbits = 1 and rx_nbits = 1 in spi transfer (for kernel 3.19)
+ 
+
+ -- Evgeny Boger <boger@contactless.ru>  Wed, 22 Apr 2015 22:16:07 +0300
+
 wb-io (1.1) stable; urgency=medium
 
   *  Do not export GPIO in setup if already exported
