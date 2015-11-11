@@ -97,7 +97,7 @@ SPI_dealloc(SPI *self)
 	self->ob_type->tp_free((PyObject *)self);
 }
 
-#define MAXPATH 16
+#define MAXPATH 32
 // DAW - 8/12/12 - increased buffer size from 32 to 1024 bytes
 #define MAXMSGLEN 1024
 
@@ -251,6 +251,9 @@ SPI_xfer(SPI *self, PyObject *args)
 		xferptr[ii].delay_usecs = delay;
 		xferptr[ii].speed_hz = 0;
 		xferptr[ii].bits_per_word = 0;
+		xferptr[ii].tx_nbits = 1;
+		xferptr[ii].rx_nbits = 1;
+
 	}
 
 	status = ioctl(self->fd, SPI_IOC_MESSAGE(len), xferptr);
@@ -330,6 +333,8 @@ SPI_xfer2(SPI *self, PyObject *args)
 	xfer.delay_usecs = 0;
 	xfer.speed_hz = 0;
 	xfer.bits_per_word = 0;
+	xfer.tx_nbits = 1;
+	xfer.rx_nbits = 1;
 
 	status = ioctl(self->fd, SPI_IOC_MESSAGE(1), &xfer);
 	if (status < 0) {
@@ -406,6 +411,9 @@ SPI_write_then_read(SPI *self, PyObject *args)
 	xfer[0].delay_usecs = 0;
 	xfer[0].speed_hz = 0;
 	xfer[0].bits_per_word = 0;
+	xfer[0].tx_nbits = 1;
+	xfer[0].rx_nbits = 1;
+
 
 	xfer[1].tx_buf = 0;
 	xfer[1].rx_buf = (unsigned long)rxbuf;
@@ -413,6 +421,8 @@ SPI_write_then_read(SPI *self, PyObject *args)
 	xfer[1].delay_usecs = 0;
 	xfer[1].speed_hz = 0;
 	xfer[1].bits_per_word = 0;
+	xfer[1].tx_nbits = 1;
+	xfer[1].rx_nbits = 1;
 
 	status = ioctl(self->fd, SPI_IOC_MESSAGE(2), xfer);
 	if (status < 0) {
