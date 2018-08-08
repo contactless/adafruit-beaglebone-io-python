@@ -375,7 +375,7 @@ SPI_write_then_read(SPI *self, PyObject *args)
 	uint8_t ii, len;
 	int rx_len;
 	PyObject *list;
-	struct spi_ioc_transfer	xfer[2];
+	struct spi_ioc_transfer	xfer[2] = {};
 	uint8_t *txbuf, *rxbuf;
 
 	if (!PyArg_ParseTuple(args, "Oi:write_then_read", &list, &rx_len))

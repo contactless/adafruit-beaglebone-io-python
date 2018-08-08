@@ -1,3 +1,9 @@
+wb-io (1.2.3) stable; urgency=medium
+
+  * explicitly initialize SPI message struct in write_then_read
+
+ -- Evgeny Boger <boger@contactless.ru>  Wed, 08 Aug 2018 20:28:15 +0300
+
 wb-io (1.2.2) stable; urgency=medium
 
   * adds support for long spidev filenames
